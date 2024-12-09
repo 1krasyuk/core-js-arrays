@@ -280,9 +280,8 @@ function distinct(arr) {
 function createNDimensionalArray(n, size) {
   if (n === 1) {
     return new Array(size).fill(0);
-  } else {
-    return new Array(size).fill(createNDimensionalArray(n - 1, size));
   }
+  return new Array(size).fill(createNDimensionalArray(n - 1, size));
 }
 
 /**
@@ -429,8 +428,8 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  return Array.from({ length: n }, (_, i) =>
-    Array.from({ length: n }, (_, j) => (i === j ? 1 : 0))
+  return Array.from({ length: n }, (row, i) =>
+    Array.from({ length: n }, (col, j) => (i === j ? 1 : 0))
   );
 }
 
@@ -463,7 +462,7 @@ function getIndicesOfOddNumbers(numbers) {
  */
 function getHexRGBValues(arr) {
   return arr.map((num) => {
-    let hex = num.toString(16).padStart(6, '0').toUpperCase();
+    const hex = num.toString(16).padStart(6, '0').toUpperCase();
     return `#${hex}`;
   });
 }
@@ -647,10 +646,9 @@ function swapHeadAndTail(arr) {
   if (len % 2 === 0) {
     // If the array length is even, swap the head and tail
     return arr.slice(middle).concat(arr.slice(0, middle));
-  } else {
-    // If the array length is odd, swap the head and tail but keep the middle element in place
-    return arr.slice(middle + 1).concat(arr[middle], arr.slice(0, middle));
   }
+  // If the array length is odd, swap the head and tail but keep the middle element in place
+  return arr.slice(middle + 1).concat(arr[middle], arr.slice(0, middle));
 }
 
 module.exports = {
